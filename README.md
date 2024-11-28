@@ -24,10 +24,14 @@ curl -d 'data=empty' http://34.173.97.76/
 # Reference Architecture
 
 GitHub Actions
-- **docker build:** build docker image from Dockerfile, git commit SHA was set as image tag
+- **docker build:** build docker image from Dockerfile (git commit SHA was set as docker image tag)
 - **docker push:** docker image will be pushed on Docker Hub ([oliveroscarlos/basic-flask-api](https://hub.docker.com/repository/docker/oliveroscarlos/basic-flask-api/general))
 - **Kubernetes Deploy:** Deploy [ks8-deployment-flask.yaml](https://github.com/OliverosCarlos/devops-exercise/blob/master/ks8-deployment-flask.yaml) file to automatically update cluster pods in order review code changes.
 
+GKE Cluster
+- **Deployment:** Replicaset 1, strategy RollingUpdate
+- **Pod:** Composed by two containers (basic-flask-api and redis)
+- **Service:** basic-flask-api exposed through 34.173.97.76
 
 ![App Screenshot](https://raw.githubusercontent.com/OliverosCarlos/devops-exercise/refs/heads/master/architecture.png)
 
@@ -51,7 +55,7 @@ git clone git@github.com:OliverosCarlos/devops-exercise.git
 ```
 
 Change Background color of main message (templates/home.html line 16)
-~~background-color: #FAFAFA;~~
+~~background-color: #FAFAFA;~~ => background-color: #0000FF;
 ```bash
 <!-- SET Blue background -->
 16|          background-color: #0000FF;
@@ -60,3 +64,11 @@ Change Background color of main message (templates/home.html line 16)
 commit changes and push to master branch in order to update k8s deployment automatically
 you can review Github Action workflows.
 
+
+
+## Note
+
+- Flask server is not a production deployment.
+- we need to create WSGI server and could be fronted by NGINX as a reverse proxy.
+- Ping me if you would like to have access to the GKE cluster.
+- GKE Cluster will be enabled for 20 days, let me know if you need it to be reestablished.
