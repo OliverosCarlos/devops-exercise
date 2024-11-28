@@ -1,11 +1,15 @@
 # Abraxas DevOps Exercise
 
-## Intro
+Web server developed with python flask and backed with redis to control counter. 
 
-Thank you for your interest and participation in our recruitment process for our DevOps Engineer position, to continue with the process we ask you to take the following technical test and share your result with us.
+Flask server and Redis DB are hosted on GCP GKE cluster, we are able to update k8s deployment through GitHub Actions.
 
-If you have any questions or comments during the test, do not hesitate to contact us by email at reclutamiento@grupoabraxas.com
+# Reference Architecture
 
+GitHub Actions
+- **docker build:** build docker image from Dockerfile, git commit SHA was set as image tag
+- **docker push:** docker image will be pushed on Docker Hub ([oliveroscarlos/basic-flask-api](https://hub.docker.com/repository/docker/oliveroscarlos/basic-flask-api/general))
+- **Kubernetes Deploy:** Deploy [ks8-deployment-flask.yaml](https://github.com/OliverosCarlos/devops-exercise/blob/master/ks8-deployment-flask.yaml) file to automatically update cluster pods in order review code changes.
 ## Get your environment ready
 
 You'll need:
